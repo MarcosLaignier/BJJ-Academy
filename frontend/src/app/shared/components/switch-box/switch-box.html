@@ -1,0 +1,11 @@
+<label class="form-check form-switch">
+  <input
+    class="form-check-input"
+    type="checkbox"
+    role="switch"
+    [checked]="value ?? false"
+    [disabled]="disabled"
+    (change)="update($event)"
+  />
+  <span class="form-check-label">{{ label() }}</span>
+</label>

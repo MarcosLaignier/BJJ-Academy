@@ -1,0 +1,21 @@
+.form-switch {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  min-height: 2rem;
+  margin: 0;
+  padding-left: 3rem;
+}
+
+.form-check-input {
+  width: 2.25rem;
+  height: 1.2rem;
+  margin-top: 0;
+  margin-left: -3rem;
+  cursor: pointer;
+}
+
+.form-check-label {
+  font-weight: 800;
+  cursor: pointer;
+}
