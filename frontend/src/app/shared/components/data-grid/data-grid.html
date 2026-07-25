@@ -1,0 +1,32 @@
+<div class="grid-wrapper">
+  <table>
+    <thead>
+      <tr>
+        @for (column of columns(); track column.field) {
+          <th>{{ column.label }}</th>
+        }
+        <th aria-label="Ações"></th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (loading()) {
+        <tr><td [attr.colspan]="columns().length + 1">Carregando...</td></tr>
+      } @else {
+        @for (row of rows(); track row.id) {
+          <tr (dblclick)="edit.emit(row)">
+            @for (column of columns(); track column.field) {
+              <td>{{ value(row, column) }}</td>
+            }
+            <td class="actions">
+              <button class="btn btn-sm btn-outline-dark" type="button" (click)="edit.emit(row)">
+                <i class="bi bi-pencil"></i>
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr><td [attr.colspan]="columns().length + 1">{{ emptyMessage() }}</td></tr>
+        }
+      }
+    </tbody>
+  </table>
+</div>

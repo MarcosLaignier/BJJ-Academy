@@ -1,0 +1,31 @@
+<label>
+  <span>{{ label() }}</span>
+  <div class="autocomplete">
+    <input
+      class="form-control"
+      type="search"
+      autocomplete="off"
+      [disabled]="disabled"
+      [placeholder]="placeholder()"
+      [value]="query()"
+      (input)="updateQuery($event)"
+      (focus)="showResults()"
+    />
+
+    @if (open()) {
+      <div class="results" role="listbox">
+        @if (loading()) {
+          <div class="message">Buscando...</div>
+        } @else {
+          @for (item of results(); track identify()(item)) {
+            <button type="button" role="option" (click)="select(item)">
+              {{ displayWith()(item) }}
+            </button>
+          } @empty {
+            <div class="message">{{ emptyMessage() }}</div>
+          }
+        }
+      </div>
+    }
+  </div>
+</label>

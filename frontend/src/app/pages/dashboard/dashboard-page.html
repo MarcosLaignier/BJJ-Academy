@@ -1,0 +1,11 @@
+<section>
+  <span class="eyebrow">Área administrativa</span>
+  <h1>Bem-vindo à Fênix.</h1>
+  <p>Use o menu lateral para acessar os módulos da academia.</p>
+
+  @if (auth.sessao()?.trocaSenhaObrigatoria) {
+    <div class="alert alert-warning">
+      Esta conta utiliza uma senha temporária. A troca obrigatória será implementada no próximo fluxo de segurança.
+    </div>
+  }
+</section>

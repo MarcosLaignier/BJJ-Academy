@@ -1,0 +1,27 @@
+<header class="toolbar">
+  <div>
+    <span>Fênix Jiu-Jitsu</span>
+    <h1>{{ title() }}</h1>
+    @if (subtitle()) {
+      <p>{{ subtitle() }}</p>
+    }
+  </div>
+
+  <div class="actions">
+    @if (listMode()) {
+      <button class="btn btn-outline-dark" type="button" (click)="filter.emit()">
+        <i class="bi bi-search"></i> Filtrar
+      </button>
+      <button class="btn btn-primary" type="button" (click)="create.emit()">
+        <i class="bi bi-plus-lg"></i> Novo
+      </button>
+    } @else {
+      <button class="btn btn-outline-dark" type="button" (click)="back.emit()">
+        <i class="bi bi-arrow-left"></i> Voltar
+      </button>
+      <button class="btn btn-primary" type="button" [disabled]="saving()" (click)="save.emit()">
+        <i class="bi bi-check-lg"></i> {{ saving() ? 'Salvando...' : 'Salvar' }}
+      </button>
+    }
+  </div>
+</header>

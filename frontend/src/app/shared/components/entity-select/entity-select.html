@@ -1,0 +1,9 @@
+<label>
+  <span>{{ label() }}</span>
+  <select class="form-select" [disabled]="disabled" [value]="selectedId()" (change)="update($event)">
+    <option value="">{{ placeholder() }}</option>
+    @for (item of items(); track identify()(item)) {
+      <option [value]="identify()(item)">{{ displayWith()(item) }}</option>
+    }
+  </select>
+</label>

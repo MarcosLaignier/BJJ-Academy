@@ -1,0 +1,42 @@
+.grid-wrapper {
+  border: 1px solid #dedbd2;
+  overflow-x: auto;
+  background: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 1rem 1.2rem;
+  border-bottom: 1px solid #ece9e2;
+  text-align: left;
+}
+
+th {
+  color: var(--bjj-muted);
+  background: #f7f5ef;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+tbody tr {
+  cursor: pointer;
+
+  &:hover {
+    background: #fbf4f1;
+  }
+}
+
+.actions {
+  width: 4rem;
+  text-align: right;
+}
+
+.btn {
+  border-radius: 0;
+}
