@@ -140,6 +140,7 @@ desabilitado.
 - `select-box`: opções simples já disponíveis na tela;
 - `enum-select`: enumerações do TypeScript com rótulos tipados;
 - `entity-select`: seleção de uma entidade entre objetos já carregados;
+- `switch-box`: valores booleanos apresentados como chave liga/desliga;
 - `autocomplete-box`: busca assíncrona de entidades, com mínimo de caracteres,
   debounce e cancelamento da requisição anterior;
 - seletores de domínio devem compor ou estender esses componentes, mantendo
