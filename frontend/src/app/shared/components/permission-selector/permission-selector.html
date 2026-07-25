@@ -1,0 +1,21 @@
+<div class="heading">
+  <strong>Permissões</strong>
+  <span>{{ selectedIds().size }} selecionadas</span>
+</div>
+
+<div class="permissions">
+  @for (permission of permissions(); track permission.id) {
+    <label>
+      <input
+        class="form-check-input"
+        type="checkbox"
+        [checked]="selectedIds().has(permission.id)"
+        (change)="toggle(permission.id, $any($event.target).checked)"
+      />
+      <span>
+        <strong>{{ permission.nome }}</strong>
+        <small>{{ permission.codigo }}</small>
+      </span>
+    </label>
+  }
+</div>

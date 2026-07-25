@@ -1,0 +1,42 @@
+<section class="page">
+  <page-toolbar
+    [title]="id ? 'Editar perfil' : 'Novo perfil'"
+    subtitle="Configure o perfil e selecione as permissões concedidas."
+    [listMode]="false"
+    [saving]="salvando()"
+    (back)="voltar()"
+    (save)="salvar()"
+  />
+
+  @if (erro()) {
+    <div class="alert alert-danger" role="alert">{{ erro() }}</div>
+  }
+
+  @if (carregando()) {
+    <p>Carregando formulário...</p>
+  } @else {
+    <form class="form-card" [formGroup]="formulario" (ngSubmit)="salvar()">
+      <div class="fields">
+        <text-box
+          label="Nome do perfil"
+          placeholder="Ex.: Secretaria"
+          formControlName="nome"
+        />
+        <text-area
+          label="Descrição"
+          formControlName="descricao"
+        />
+        <label class="active-field">
+          <input class="form-check-input" type="checkbox" formControlName="ativo" />
+          Perfil ativo
+        </label>
+      </div>
+
+      <permission-selector
+        [permissions]="permissoes()"
+        [selectedIds]="selecionadas()"
+        (selectedIdsChange)="selecionadas.set($event)"
+      />
+    </form>
+  }
+</section>

@@ -1,0 +1,53 @@
+.page {
+  padding: clamp(2rem, 4vw, 4rem);
+}
+
+.filter-card {
+  display: grid;
+  grid-template-columns: minmax(220px, 1.2fr) minmax(170px, 0.7fr) minmax(220px, 1fr) auto;
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 1.25rem;
+  padding: 1.25rem;
+  border: 1px solid #dedbd2;
+  background: #fff;
+
+  .name-filter {
+    display: block;
+
+    span {
+      display: block;
+      margin-bottom: 0.4rem;
+    }
+  }
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 800;
+  }
+
+  .form-control {
+    border-radius: 0;
+  }
+
+  .btn-link {
+    color: var(--bjj-muted);
+    white-space: nowrap;
+  }
+}
+
+.alert {
+  border-radius: 0;
+}
+
+@media (max-width: 1050px) {
+  .filter-card {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .filter-card {
+    grid-template-columns: 1fr;
+  }
+}

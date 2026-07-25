@@ -1,0 +1,35 @@
+.page {
+  padding: clamp(2rem, 4vw, 4rem);
+}
+
+.form-card {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) minmax(360px, 1.2fr);
+  gap: 2rem;
+  padding: 2rem;
+  border: 1px solid #dedbd2;
+  background: #fff;
+}
+
+.fields {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.active-field {
+  display: flex;
+  gap: 0.65rem;
+  align-items: center;
+  font-weight: 800;
+}
+
+.alert {
+  border-radius: 0;
+}
+
+@media (max-width: 900px) {
+  .form-card {
+    grid-template-columns: 1fr;
+  }
+}

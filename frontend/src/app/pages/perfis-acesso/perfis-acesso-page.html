@@ -1,0 +1,50 @@
+<section class="page">
+  <page-toolbar
+    title="Perfis de acesso"
+    subtitle="Defina o que cada perfil pode visualizar ou alterar dentro do sistema."
+    (create)="novo()"
+    (filter)="pesquisar()"
+  />
+
+  @if (erro()) {
+    <div class="alert alert-danger" role="alert">{{ erro() }}</div>
+  }
+
+  <div class="filter-card">
+    <label class="name-filter" for="profile-filter">
+      <span>Nome do perfil</span>
+      <input
+        id="profile-filter"
+        class="form-control"
+        type="search"
+        [formControl]="filtro"
+        placeholder="Digite para filtrar"
+        (keyup.enter)="pesquisar()"
+      />
+    </label>
+
+    <select-box
+      label="Status"
+      emptyLabel="Todos os status"
+      [options]="opcoesStatus"
+      [formControl]="filtroStatus"
+    />
+
+    <select-box
+      label="Permissão"
+      emptyLabel="Todas as permissões"
+      [options]="opcoesPermissao()"
+      [formControl]="filtroPermissao"
+    />
+
+    <button class="btn btn-link" type="button" (click)="limparFiltros()">Limpar filtros</button>
+  </div>
+
+  <data-grid
+    [rows]="dataSource()"
+    [columns]="colunas"
+    [loading]="carregando()"
+    emptyMessage="Nenhum perfil encontrado."
+    (edit)="editar($event)"
+  />
+</section>
