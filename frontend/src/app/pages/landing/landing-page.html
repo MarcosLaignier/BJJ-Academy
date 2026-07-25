@@ -1,0 +1,167 @@
+<header class="site-header">
+  <nav class="navbar navbar-expand-lg container py-3" aria-label="Navegação principal">
+    <a class="navbar-brand d-flex align-items-center gap-2" href="#inicio">
+      <img class="brand-logo" src="/fenix.jpg" alt="" width="44" height="44" />
+      <span>Fênix Jiu-Jitsu</span>
+    </a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      aria-controls="mainMenu"
+      [attr.aria-expanded]="menuOpen()"
+      aria-label="Abrir menu"
+      (click)="toggleMenu()"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="mainMenu" class="navbar-collapse" [class.collapse]="!menuOpen()">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+        <li class="nav-item"><a class="nav-link" href="#academia" (click)="closeMenu()">A academia</a></li>
+        <li class="nav-item"><a class="nav-link" href="#turmas" (click)="closeMenu()">Turmas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#horarios" (click)="closeMenu()">Horários</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="btn btn-primary" href="#contato" (click)="closeMenu()">Aula experimental</a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-outline-light" routerLink="/login" (click)="closeMenu()">
+            <i class="bi bi-person-lock"></i> Área logada
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <section id="inicio" class="hero">
+    <div class="container hero-content">
+      <div class="row align-items-center gy-5">
+        <div class="col-lg-7">
+          <span class="eyebrow">Jiu-jitsu para todos</span>
+          <h1>Força no corpo.<br /><span>Confiança na vida.</span></h1>
+          <p class="hero-copy">
+            Aprenda jiu-jitsu em um ambiente seguro, acolhedor e preparado para acompanhar
+            sua evolução — do primeiro treino à competição.
+          </p>
+          <div class="d-flex flex-column flex-sm-row gap-3">
+            <a class="btn btn-primary btn-lg" href="#contato">Agendar aula grátis</a>
+            <a class="btn btn-outline-light btn-lg" href="#academia">Conhecer a academia</a>
+          </div>
+          <div class="hero-highlights">
+            <span><i class="bi bi-check-circle-fill"></i> Professores graduados</span>
+            <span><i class="bi bi-check-circle-fill"></i> Todas as idades</span>
+          </div>
+        </div>
+
+        <div class="col-lg-5">
+          <div class="hero-card academy-identity">
+            <img src="/fenix.jpg" alt="Logo da Fênix Jiu-Jitsu" />
+            <div class="academy-identity-copy">
+              <small>Fênix Jiu-Jitsu</small>
+              <strong>Mestre Evaldo Drumond</strong>
+              <span>Faixa-preta 4º grau</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="academia" class="section">
+    <div class="container">
+      <div class="row align-items-end mb-5">
+        <div class="col-lg-7">
+          <span class="eyebrow eyebrow-dark">Muito além do tatame</span>
+          <h2>Uma academia para você evoluir por inteiro.</h2>
+        </div>
+        <div class="col-lg-5">
+          <p class="section-intro">
+            Sob a liderança do mestre Evaldo Drumond, faixa-preta 4º grau, unimos técnica,
+            disciplina e uma comunidade que treina junto.
+          </p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        @for (benefit of benefits; track benefit.title) {
+          <div class="col-md-4">
+            <article class="benefit-card">
+              <i class="bi" [class]="benefit.icon"></i>
+              <span>0{{ $index + 1 }}</span>
+              <h3>{{ benefit.title }}</h3>
+              <p>{{ benefit.description }}</p>
+            </article>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="turmas" class="section section-dark">
+    <div class="container">
+      <div class="row align-items-center g-5">
+        <div class="col-lg-5">
+          <span class="eyebrow">Treino para cada fase</span>
+          <h2>Do primeiro passo ao alto rendimento.</h2>
+          <p>
+            Turmas organizadas por idade e nível para que cada aluno treine com segurança,
+            atenção e o desafio certo.
+          </p>
+        </div>
+        <div class="col-lg-7">
+          <div class="classes-list">
+            @for (group of groups; track group.name) {
+              <div class="class-row">
+                <span>{{ group.age }}</span>
+                <h3>{{ group.name }}</h3>
+                <p>{{ group.description }}</p>
+                <i class="bi bi-arrow-up-right"></i>
+              </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="horarios" class="section">
+    <div class="container">
+      <span class="eyebrow eyebrow-dark">Encontre seu horário</span>
+      <div class="row align-items-end mb-5">
+        <div class="col-lg-7"><h2>Treine no seu ritmo.</h2></div>
+        <div class="col-lg-5"><p class="section-intro">Grade inicial ilustrativa. Personalizaremos com os horários reais da academia.</p></div>
+      </div>
+
+      <div class="schedule">
+        @for (item of schedules; track item.time) {
+          <div class="schedule-row">
+            <strong>{{ item.time }}</strong>
+            <span>{{ item.days }}</span>
+            <span>{{ item.group }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section id="contato" class="cta">
+    <div class="container text-center">
+      <span class="eyebrow">O tatame está esperando</span>
+      <h2>Venha viver seu primeiro treino.</h2>
+      <p>Fale com nossa equipe e agende uma aula experimental gratuita.</p>
+      <a class="btn btn-light btn-lg" href="https://wa.me/" target="_blank" rel="noopener">
+        <i class="bi bi-whatsapp"></i> Falar pelo WhatsApp
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container d-flex flex-column flex-md-row justify-content-between gap-3">
+    <strong>Fênix Jiu-Jitsu</strong>
+    <span>Disciplina • Respeito • Evolução</span>
+    <span>© {{ currentYear }} Fênix Jiu-Jitsu</span>
+  </div>
+</footer>

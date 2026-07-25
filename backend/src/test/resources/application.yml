@@ -1,0 +1,5 @@
+app:
+  security:
+    create-dev-admin: false
+    jwt-secret: fenix-automated-test-jwt-secret-at-least-32-bytes
+    token-duration: PT5M

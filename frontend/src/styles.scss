@@ -1,0 +1,33 @@
+@use 'bootstrap/scss/bootstrap';
+@import 'bootstrap-icons/font/bootstrap-icons.css';
+
+:root {
+  --bjj-ink: #11130f;
+  --bjj-paper: #f4f1e8;
+  --bjj-accent: #d83a2f;
+  --bjj-muted: #6f716b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--bjj-ink);
+  background: var(--bjj-paper);
+  font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.btn {
+  --bs-btn-border-radius: 0;
+  padding: 0.8rem 1.25rem;
+  font-weight: 700;
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--bjj-accent);
+  --bs-btn-border-color: var(--bjj-accent);
+  --bs-btn-hover-bg: #b82e25;
+  --bs-btn-hover-border-color: #b82e25;
+}

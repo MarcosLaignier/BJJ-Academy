@@ -1,0 +1,41 @@
+<main class="login-page">
+  <section class="login-brand">
+    <a routerLink="/" aria-label="Voltar ao início">
+      <img src="/fenix.jpg" alt="Fênix Jiu-Jitsu" />
+    </a>
+    <div>
+      <span>Fênix Jiu-Jitsu</span>
+      <h1>Disciplina no tatame.<br />Organização fora dele.</h1>
+      <p>Área exclusiva para a gestão da academia.</p>
+    </div>
+  </section>
+
+  <section class="login-panel">
+    <div class="login-box">
+      <a class="back-link" routerLink="/"><i class="bi bi-arrow-left"></i> Voltar ao site</a>
+      <span class="eyebrow">Área logada</span>
+      <h2>Bem-vindo de volta.</h2>
+      <p>Informe suas credenciais para continuar.</p>
+
+      <form [formGroup]="formulario" (ngSubmit)="entrar()">
+        <label for="email">E-mail</label>
+        <input id="email" class="form-control" type="email" formControlName="email" autocomplete="username" />
+
+        <label for="senha">Senha</label>
+        <input id="senha" class="form-control" type="password" formControlName="senha" autocomplete="current-password" />
+
+        @if (erro()) {
+          <div class="alert alert-danger" role="alert">{{ erro() }}</div>
+        }
+
+        <button class="btn btn-primary btn-lg w-100" type="submit" [disabled]="carregando()">
+          @if (carregando()) {
+            Entrando...
+          } @else {
+            Entrar <i class="bi bi-arrow-right"></i>
+          }
+        </button>
+      </form>
+    </div>
+  </section>
+</main>
