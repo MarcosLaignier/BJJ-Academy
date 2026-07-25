@@ -3,8 +3,15 @@
     <img src="/fenix.jpg" alt="" />
     <strong>Fênix Jiu-Jitsu</strong>
     <nav>
-      <a class="active" href="#"><i class="bi bi-grid"></i> Visão geral</a>
+      <a routerLink="/area" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+        <i class="bi bi-grid"></i> Visão geral
+      </a>
       <span><i class="bi bi-people"></i> Alunos <small>em breve</small></span>
+      @if (podeGerenciarPerfis()) {
+        <a routerLink="/area/perfis" routerLinkActive="active">
+          <i class="bi bi-shield-lock"></i> Perfis de acesso
+        </a>
+      }
     </nav>
   </aside>
 
@@ -19,16 +26,6 @@
       </button>
     </header>
 
-    <section>
-      <span class="eyebrow">Área administrativa</span>
-      <h1>Bem-vindo à Fênix.</h1>
-      <p>A autenticação está funcionando. O cadastro de alunos será o próximo módulo.</p>
-
-      @if (auth.sessao()?.trocaSenhaObrigatoria) {
-        <div class="alert alert-warning">
-          Esta conta utiliza uma senha temporária. A troca obrigatória será implementada no próximo fluxo de segurança.
-        </div>
-      }
-    </section>
+    <router-outlet />
   </main>
 </div>

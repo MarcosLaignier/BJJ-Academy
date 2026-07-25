@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from './core/auth/auth.guard';
+import { authGuard, permissionGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
   {
@@ -16,7 +16,39 @@ export const routes: Routes = [
     path: 'area',
     loadComponent: () => import('./pages/area/area-page').then((page) => page.AreaPage),
     canActivate: [authGuard],
-    title: 'Área logada | Fênix Jiu-Jitsu',
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./pages/dashboard/dashboard-page').then((page) => page.DashboardPage),
+        title: 'Área logada | Fênix Jiu-Jitsu',
+      },
+      {
+        path: 'perfis',
+        canActivate: [permissionGuard('PERFIL_GERENCIAR')],
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('./pages/perfis-acesso/perfis-acesso-page').then((page) => page.PerfisAcessoPage),
+            title: 'Perfis de acesso | Fênix Jiu-Jitsu',
+          },
+          {
+            path: 'novo',
+            loadComponent: () =>
+              import('./pages/perfis-acesso/perfil-acesso-form-page')
+                .then((page) => page.PerfilAcessoFormPage),
+            title: 'Novo perfil | Fênix Jiu-Jitsu',
+          },
+          {
+            path: 'editar/:id',
+            loadComponent: () =>
+              import('./pages/perfis-acesso/perfil-acesso-form-page')
+                .then((page) => page.PerfilAcessoFormPage),
+            title: 'Editar perfil | Fênix Jiu-Jitsu',
+          },
+        ],
+      },
+    ],
   },
   { path: '**', redirectTo: '' },
 ];

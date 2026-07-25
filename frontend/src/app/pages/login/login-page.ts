@@ -5,7 +5,7 @@ import { finalize } from 'rxjs';
 import { AuthService } from '../../core/auth/auth.service';
 
 @Component({
-  selector: 'app-login-page',
+  selector: 'login-page',
   imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',

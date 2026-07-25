@@ -20,7 +20,7 @@ interface Schedule {
 }
 
 @Component({
-  selector: 'app-landing-page',
+  selector: 'landing-page',
   imports: [RouterLink],
   templateUrl: './landing-page.html',
   styleUrl: './landing-page.scss',

@@ -101,14 +101,53 @@ quando necessário. Evitar pastas vazias e abstrações antes de haver uso real.
 Regras:
 
 - componentes são standalone;
+- seletores de componentes compartilhados usam nomes diretos, sem prefixo
+  `app-`, como `text-box`, `text-area`, `select-box`, `data-grid` e
+  `page-toolbar`;
 - páginas orquestram a tela e componentes menores cuidam da apresentação;
 - acesso HTTP fica em services, nunca diretamente em componentes;
 - contratos da API são tipados;
+- evitar quebras de linha desnecessárias em assinaturas; usar até 140 caracteres
+  e, quando a assinatura precisar de múltiplas linhas, manter o primeiro
+  parâmetro junto à abertura e alinhar os seguintes;
 - estilos globais ficam em `src/styles.scss`; estilos específicos ficam junto
   ao componente;
 - preservar compatibilidade com SSR, sem acessar `window`, `document` ou
   `localStorage` sem verificar a plataforma;
 - instalar dependências localmente com npm e manter o `package-lock.json`.
+
+### CRUDs
+
+Cadastros seguem as abstrações de `src/app/shared/core/crud`:
+
+- `CrudService` define pesquisa, busca por ID, criação e atualização;
+- `BaseCrud` centraliza loading, salvamento e tratamento de erros;
+- `BaseListCrud` centraliza pesquisa, carregamento, navegação e dados auxiliares;
+- `BaseFormCrud` centraliza inclusão, edição, persistência e retorno à lista.
+
+Cada página informa somente seus filtros, DTOs, dados auxiliares, validações e
+mapeamento do formulário. A lista e o formulário permanecem em rotas separadas.
+Exclusão não é presumida pela base, pois alguns domínios usam inativação e outros
+podem exigir regras específicas.
+
+### Componentes de formulário
+
+Campos compatíveis com Reactive Forms estendem `BaseValueAccessor`, em
+`src/app/shared/core/forms`. A base concentra o contrato `ControlValueAccessor`
+e evita que cada componente replique o controle de valor, toque e estado
+desabilitado.
+
+- `select-box`: opções simples já disponíveis na tela;
+- `enum-select`: enumerações do TypeScript com rótulos tipados;
+- `entity-select`: seleção de uma entidade entre objetos já carregados;
+- `autocomplete-box`: busca assíncrona de entidades, com mínimo de caracteres,
+  debounce e cancelamento da requisição anterior;
+- seletores de domínio devem compor ou estender esses componentes, mantendo
+  serviços HTTP fora da infraestrutura visual.
+
+O componente recebe a função de busca por `input`, em vez de depender de um
+service específico. Assim, seletores como aluno, instrutor ou perfil reutilizam
+a mesma infraestrutura sem acoplá-la a uma API.
 
 ## Nomenclatura
 

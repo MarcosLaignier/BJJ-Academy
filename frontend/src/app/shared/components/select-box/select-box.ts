@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, forwardRef, input } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { NG_VALUE_ACCESSOR } from '@angular/forms';
+import { BaseValueAccessor } from '../../core/forms/base-value-accessor';
 
-export interface SelectOption {
-  value: string;
+export interface SelectOption<T extends string | number = string> {
+  value: T;
   label: string;
 }
 
@@ -17,35 +18,15 @@ export interface SelectOption {
   }],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectBox implements ControlValueAccessor {
+export class SelectBox<T extends string | number = string> extends BaseValueAccessor<T> {
   readonly label = input.required<string>();
-  readonly options = input.required<SelectOption[]>();
+  readonly options = input.required<ReadonlyArray<SelectOption<T>>>();
   readonly emptyLabel = input('Todos');
 
-  protected value = '';
-  protected disabled = false;
-  private onChange: (value: string) => void = () => undefined;
-  private onTouched: () => void = () => undefined;
-
-  writeValue(value: string | null): void {
-    this.value = value ?? '';
-  }
-
-  registerOnChange(fn: (value: string) => void): void {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: () => void): void {
-    this.onTouched = fn;
-  }
-
-  setDisabledState(disabled: boolean): void {
-    this.disabled = disabled;
-  }
-
   protected update(event: Event): void {
-    this.value = (event.target as HTMLSelectElement).value;
-    this.onChange(this.value);
-    this.onTouched();
+    const rawValue = (event.target as HTMLSelectElement).value;
+    const option = this.options().find((item) => String(item.value) === rawValue);
+    this.setValue(option?.value ?? null);
+    this.touch();
   }
 }

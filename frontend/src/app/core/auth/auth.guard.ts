@@ -9,3 +9,11 @@ export const authGuard: CanActivateFn = (_route, state) => {
     ? true
     : router.createUrlTree(['/login'], { queryParams: { retorno: state.url } });
 };
+
+export const permissionGuard = (permissao: string): CanActivateFn => () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  return auth.sessao()?.permissoes.includes(permissao)
+    ? true
+    : router.createUrlTree(['/area']);
+};

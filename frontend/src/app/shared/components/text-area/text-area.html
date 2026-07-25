@@ -5,7 +5,7 @@
     [rows]="rows()"
     [placeholder]="placeholder()"
     [disabled]="disabled"
-    [value]="value"
+    [value]="value ?? ''"
     (input)="update($event)"
     (blur)="touch()"
   ></textarea>

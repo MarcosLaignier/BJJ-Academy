@@ -6,4 +6,6 @@ import java.util.Optional;
 
 public interface PerfilAcessoRepository extends BaseRepository<PerfilAcesso, Long> {
     Optional<PerfilAcesso> findByNome(String nome);
+    boolean existsByNomeIgnoreCase(String nome);
+    boolean existsByNomeIgnoreCaseAndIdNot(String nome, Long id);
 }
