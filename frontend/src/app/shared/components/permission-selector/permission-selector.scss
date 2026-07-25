@@ -24,12 +24,6 @@ label {
   border-bottom: 1px solid #ece9e2;
 }
 
-label > span,
-small {
+label > span {
   display: block;
-}
-
-small {
-  margin-top: 0.15rem;
-  color: var(--bjj-muted);
 }

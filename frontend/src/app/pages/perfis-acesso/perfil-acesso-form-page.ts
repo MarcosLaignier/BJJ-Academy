@@ -13,11 +13,12 @@ import { PageToolbar } from '../../shared/components/page-toolbar/page-toolbar';
 import { PermissionSelector } from '../../shared/components/permission-selector/permission-selector';
 import { TextArea } from '../../shared/components/text-area/text-area';
 import { TextBox } from '../../shared/components/text-box/text-box';
+import { SwitchBox } from '../../shared/components/switch-box/switch-box';
 import { BaseFormCrud } from '../../shared/core/crud/base-form-crud';
 
 @Component({
   selector: 'perfil-acesso-form-page',
-  imports: [ReactiveFormsModule, PageToolbar, TextBox, TextArea, PermissionSelector],
+  imports: [ReactiveFormsModule, PageToolbar, TextBox, TextArea, SwitchBox, PermissionSelector],
   templateUrl: './perfil-acesso-form-page.html',
   styleUrl: './perfil-acesso-form-page.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

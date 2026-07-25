@@ -26,10 +26,7 @@
           label="Descrição"
           formControlName="descricao"
         />
-        <label class="active-field">
-          <input class="form-check-input" type="checkbox" formControlName="ativo" />
-          Perfil ativo
-        </label>
+        <switch-box label="Perfil ativo" formControlName="ativo" />
       </div>
 
       <permission-selector
