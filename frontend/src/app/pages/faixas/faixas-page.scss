@@ -1,0 +1,6 @@
+.page { padding: clamp(2rem, 4vw, 4rem); }
+.filter-card { display: grid; grid-template-columns: 1.2fr 1fr .7fr auto; gap: 1rem; align-items: end; margin-bottom: 1.25rem; padding: 1.25rem; border: 1px solid #dedbd2; background: #fff; }
+label, label span { display: block; } label { font-size: .8rem; font-weight: 800; } label span { margin-bottom: .4rem; }
+.form-control { border-radius: 0; } .btn-link { color: var(--bjj-muted); white-space: nowrap; }
+@media(max-width: 900px) { .filter-card { grid-template-columns: 1fr 1fr; } }
+@media(max-width: 600px) { .filter-card { grid-template-columns: 1fr; } }

@@ -16,7 +16,7 @@ import { BaseValueAccessor } from '../../core/forms/base-value-accessor';
 export class TextBox extends BaseValueAccessor<string> {
   readonly label = input.required<string>();
   readonly placeholder = input('');
-  readonly type = input<'text' | 'email' | 'password' | 'search'>('text');
+  readonly type = input<'text' | 'email' | 'password' | 'search' | 'number' | 'color'>('text');
 
   protected update(event: Event): void {
     this.setValue((event.target as HTMLInputElement).value);

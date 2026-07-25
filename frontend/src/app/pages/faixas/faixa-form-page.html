@@ -1,0 +1,20 @@
+<section class="page">
+  <page-toolbar title="Editar faixa" subtitle="Ajuste as regras e a aparência da graduação." [listMode]="false" [saving]="salvando()" (back)="voltar()" (save)="salvar()" />
+  @if (erro()) { <div class="alert alert-danger">{{ erro() }}</div> }
+  @if (carregando()) { <p>Carregando...</p> } @else {
+    <form class="form-card" [formGroup]="formulario" (ngSubmit)="salvar()">
+      <div class="fields">
+        <div><small>Código oficial</small><strong>{{ codigo }}</strong></div>
+        <text-box label="Nome" formControlName="nome" />
+        <enum-select label="Categoria" [enumObject]="categorias" [labels]="rotulos" formControlName="categoria" />
+        <div class="row"><text-box label="Ordem" type="number" formControlName="ordem" /><text-box label="Idade mínima" type="number" formControlName="idadeMinima" /><text-box label="Máximo de graus" type="number" formControlName="quantidadeMaximaGraus" /></div>
+        <switch-box label="Faixa ativa" formControlName="ativo" />
+      </div>
+      <div class="appearance">
+        <h2>Aparência</h2>
+        <belt-display [name]="preview().nome ?? 'Faixa'" [primaryColor]="preview().corPrincipalHex ?? '#F5F5F5'" [secondaryColor]="preview().corSecundariaHex || null" [rankBarColor]="preview().corTarjaHex ?? '#111111'" [degrees]="preview().quantidadeMaximaGraus ?? 0" [pattern]="preview().categoria === 'INFANTIL' ? 'CENTER_STRIPE' : 'ALTERNATING'" />
+        <div class="row"><text-box label="Cor principal" type="color" formControlName="corPrincipalHex" /><text-box label="Cor secundária (opcional)" placeholder="#FFFFFF" formControlName="corSecundariaHex" /><text-box label="Cor da tarja" type="color" formControlName="corTarjaHex" /></div>
+      </div>
+    </form>
+  }
+</section>

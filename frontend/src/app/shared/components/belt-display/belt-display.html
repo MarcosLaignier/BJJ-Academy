@@ -1,0 +1,6 @@
+<div class="belt" role="img" [attr.aria-label]="name()" [style.background]="background()">
+  <div class="rank-bar" [style.background]="rankBarColor()">
+    @for (_mark of marks(); track $index) { <span></span> }
+  </div>
+</div>
+<small>{{ name() }}</small>

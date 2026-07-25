@@ -51,6 +51,11 @@ O domínio inicial separa:
 - `Faixa` e `HistoricoGraduacao`, que preservam a evolução sem sobrescrever o
   histórico anterior.
 
+As faixas oficiais possuem código tipado por `CodigoFaixa` e configuração
+persistida de nome, categoria, ordem, idade mínima, quantidade de graus e cores
+hexadecimais. O código oficial não é alterável pela tela. Combinações infantis e
+faixas coral usam uma cor secundária opcional; a tarja possui cor própria.
+
 Papéis da academia não concedem acesso automaticamente. Uma pessoa pode ter
 vários papéis e nenhuma conta, enquanto permissões são atribuídas por perfil de
 acesso.

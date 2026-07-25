@@ -1,0 +1,5 @@
+.page { padding: clamp(2rem, 4vw, 4rem); }
+.form-card { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; padding: 2rem; border: 1px solid #dedbd2; background: #fff; }
+.fields,.appearance { display: grid; gap: 1.25rem; align-content: start; } .row { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+small,strong { display: block; } h2 { margin: 0; font-size: 1.2rem; }
+@media(max-width: 900px) { .form-card { grid-template-columns: 1fr; } } @media(max-width: 600px) { .row { grid-template-columns: 1fr; } }

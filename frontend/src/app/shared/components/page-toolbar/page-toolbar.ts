@@ -10,6 +10,7 @@ export class PageToolbar {
   readonly title = input.required<string>();
   readonly subtitle = input<string>();
   readonly listMode = input(true);
+  readonly showCreate = input(true);
   readonly saving = input(false);
 
   readonly create = output<void>();

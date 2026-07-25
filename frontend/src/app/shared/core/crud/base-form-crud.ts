@@ -44,9 +44,12 @@ export abstract class BaseFormCrud<D, C, F, ID = number, A = null>
     }
     this.salvando.set(true);
     this.limparErro();
-    const request$ = this.id !== null
-      ? this.service.atualizar(this.id, dto)
-      : this.service.criar(dto);
+    if (this.id === null && !this.service.criar) {
+      this.erro.set('Este cadastro não permite novos registros.');
+      this.salvando.set(false);
+      return;
+    }
+    const request$ = this.id !== null ? this.service.atualizar(this.id, dto) : this.service.criar!(dto);
 
     request$.pipe(finalize(() => this.salvando.set(false))).subscribe({
       next: (registro) => this.aposSalvar(registro),

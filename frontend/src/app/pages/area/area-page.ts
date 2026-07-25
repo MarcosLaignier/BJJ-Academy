@@ -21,4 +21,8 @@ export class AreaPage {
   protected podeGerenciarPerfis(): boolean {
     return this.auth.sessao()?.permissoes.includes('PERFIL_GERENCIAR') ?? false;
   }
+
+  protected podeGerenciarFaixas(): boolean {
+    return this.auth.sessao()?.permissoes.includes('FAIXA_GERENCIAR') ?? false;
+  }
 }

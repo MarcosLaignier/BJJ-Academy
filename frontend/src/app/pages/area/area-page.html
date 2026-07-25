@@ -7,6 +7,9 @@
         <i class="bi bi-grid"></i> Visão geral
       </a>
       <span><i class="bi bi-people"></i> Alunos <small>em breve</small></span>
+      @if (podeGerenciarFaixas()) {
+        <a routerLink="/area/faixas" routerLinkActive="active"><i class="bi bi-award"></i> Faixas</a>
+      }
       @if (podeGerenciarPerfis()) {
         <a routerLink="/area/perfis" routerLinkActive="active">
           <i class="bi bi-shield-lock"></i> Perfis de acesso

@@ -1,0 +1,11 @@
+<section class="page">
+  <page-toolbar title="Faixas" subtitle="Configure as graduações oficiais e sua apresentação visual." [showCreate]="false" (filter)="pesquisar()" />
+  @if (erro()) { <div class="alert alert-danger">{{ erro() }}</div> }
+  <div class="filter-card">
+    <label><span>Nome da faixa</span><input class="form-control" type="search" [formControl]="nome" (keyup.enter)="pesquisar()" /></label>
+    <enum-select label="Categoria" placeholder="Todas as categorias" [enumObject]="categorias" [labels]="rotulos" [formControl]="categoria" />
+    <select-box label="Status" emptyLabel="Todos os status" [options]="statusOptions" [formControl]="status" />
+    <button class="btn btn-link" type="button" (click)="limpar()">Limpar filtros</button>
+  </div>
+  <data-grid [rows]="dataSource()" [columns]="colunas" [loading]="carregando()" emptyMessage="Nenhuma faixa encontrada." (edit)="editar($event)" />
+</section>

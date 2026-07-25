@@ -48,6 +48,14 @@ export const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'faixas',
+        canActivate: [permissionGuard('FAIXA_GERENCIAR')],
+        children: [
+          { path: '', loadComponent: () => import('./pages/faixas/faixas-page').then((page) => page.FaixasPage), title: 'Faixas | Fênix Jiu-Jitsu' },
+          { path: 'editar/:id', loadComponent: () => import('./pages/faixas/faixa-form-page').then((page) => page.FaixaFormPage), title: 'Editar faixa | Fênix Jiu-Jitsu' },
+        ],
+      },
     ],
   },
   { path: '**', redirectTo: '' },
