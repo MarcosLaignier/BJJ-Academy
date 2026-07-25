@@ -1,0 +1,12 @@
+<label>
+  <span>{{ label() }}</span>
+  <input
+    class="form-control"
+    [type]="type()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled"
+    [value]="value"
+    (input)="update($event)"
+    (blur)="touch()"
+  />
+</label>
