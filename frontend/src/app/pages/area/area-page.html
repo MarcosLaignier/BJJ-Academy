@@ -1,25 +1,69 @@
-<div class="area-shell">
+<div class="area-shell" [class.sidebar-collapsed]="barraRecolhida()" [class.mobile-menu-open]="menuMobileAberto()">
   <aside>
     <img src="/fenix.jpg" alt="" />
-    <strong>Fênix Jiu-Jitsu</strong>
+    <strong class="academy-name">Fênix Jiu-Jitsu</strong>
     <nav>
-      <a routerLink="/area" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <a class="main-link" routerLink="/area" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="fecharMenuMobile()">
         <i class="bi bi-grid"></i> Visão geral
       </a>
-      <span><i class="bi bi-people"></i> Alunos <small>em breve</small></span>
-      @if (podeGerenciarFaixas()) {
-        <a routerLink="/area/faixas" routerLinkActive="active"><i class="bi bi-award"></i> Faixas</a>
+
+      @if (podeGerenciarFaixas() || podeGerenciarPerfis()) {
+        <section>
+          <button type="button" (click)="alternarSecao('configuracoes')" [attr.aria-expanded]="secaoAberta() === 'configuracoes'">
+            <span><i class="bi bi-gear"></i> Configurações</span>
+            <i class="bi" [class.bi-chevron-down]="secaoAberta() !== 'configuracoes'" [class.bi-chevron-up]="secaoAberta() === 'configuracoes'"></i>
+          </button>
+          @if (secaoAberta() === 'configuracoes') {
+            <div class="submenu">
+              @if (podeGerenciarPerfis()) {
+                <a routerLink="/area/perfis" routerLinkActive="active" (click)="fecharMenuMobile()"><i class="bi bi-shield-lock"></i> Perfis de acesso</a>
+              }
+              @if (podeGerenciarFaixas()) {
+                <a routerLink="/area/faixas" routerLinkActive="active" (click)="fecharMenuMobile()"><i class="bi bi-award"></i> Faixas</a>
+              }
+              <span><i class="bi bi-person-badge"></i> Papéis <small>em breve</small></span>
+              <span><i class="bi bi-journal-text"></i> Planos e modalidades <small>em breve</small></span>
+            </div>
+          }
+        </section>
       }
-      @if (podeGerenciarPerfis()) {
-        <a routerLink="/area/perfis" routerLinkActive="active">
-          <i class="bi bi-shield-lock"></i> Perfis de acesso
-        </a>
-      }
+
+      <section>
+        <button type="button" (click)="alternarSecao('cadastros')" [attr.aria-expanded]="secaoAberta() === 'cadastros'">
+          <span><i class="bi bi-folder2-open"></i> Cadastros</span>
+          <i class="bi" [class.bi-chevron-down]="secaoAberta() !== 'cadastros'" [class.bi-chevron-up]="secaoAberta() === 'cadastros'"></i>
+        </button>
+        @if (secaoAberta() === 'cadastros') {
+          <div class="submenu">
+            <span><i class="bi bi-people"></i> Alunos <small>em breve</small></span>
+            <span><i class="bi bi-person-video3"></i> Instrutores <small>em breve</small></span>
+            <span><i class="bi bi-person-lock"></i> Usuários <small>em breve</small></span>
+          </div>
+        }
+      </section>
+
+      <section>
+        <button type="button" (click)="alternarSecao('operacoes')" [attr.aria-expanded]="secaoAberta() === 'operacoes'">
+          <span><i class="bi bi-arrow-left-right"></i> Operações</span>
+          <i class="bi" [class.bi-chevron-down]="secaoAberta() !== 'operacoes'" [class.bi-chevron-up]="secaoAberta() === 'operacoes'"></i>
+        </button>
+        @if (secaoAberta() === 'operacoes') {
+          <div class="submenu">
+            <span><i class="bi bi-card-checklist"></i> Matrículas <small>em breve</small></span>
+            <span><i class="bi bi-award"></i> Graduações <small>em breve</small></span>
+            <span><i class="bi bi-calendar-check"></i> Presenças <small>em breve</small></span>
+            <span><i class="bi bi-cash-coin"></i> Mensalidades <small>em breve</small></span>
+          </div>
+        }
+      </section>
     </nav>
   </aside>
 
   <main>
     <header>
+      <button class="menu-toggle" type="button" aria-label="Alternar menu lateral" [attr.aria-expanded]="mobile() ? menuMobileAberto() : !barraRecolhida()" (click)="alternarMenu()">
+        <i class="bi bi-list"></i>
+      </button>
       <div>
         <small>{{ auth.sessao()?.perfil }}</small>
         <strong>{{ auth.sessao()?.nome }}</strong>
@@ -31,4 +75,7 @@
 
     <router-outlet />
   </main>
+  @if (menuMobileAberto()) {
+    <button class="backdrop" type="button" aria-label="Fechar menu" (click)="fecharMenuMobile()"></button>
+  }
 </div>
